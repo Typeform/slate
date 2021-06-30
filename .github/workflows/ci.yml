@@ -9,7 +9,6 @@ on:
       - master
 
 env:
-  GH_TOKEN: ${{ secrets.GH_TOKEN }}
   CXX: g++-4.8
 
 jobs:
@@ -30,9 +29,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
-          always-auth: true
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@typeform'
 
       - name: Get yarn cache
         uses: actions/cache@v2
@@ -44,8 +40,6 @@ jobs:
 
       - name: Install Node.js dependencies
         run: yarn
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GH_TOKEN}}
 
       - name: Build assets
         run: yarn build
